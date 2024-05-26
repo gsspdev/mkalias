@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+	echo "Usage: mkalias <alias_name> <command>"
+	exit 1
+fi
+
+ALIAS_NAME=$1
+COMMAND=$2
+# escape command to safely use in echo
+ESCAPED_COMMAND=$(printf '%q' '$COMMAND')
+
+NEW_ALIAS="alias $ALIAS_NAME=\"$COMMAND\""
+
+echo $NEW_ALIAS
+echo "Is the above alias correct? (y/n)"
+read response
+
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+	echo "Appending new alias to .zshrc..."
+	echo $NEW_ALIAS >> ~/.zshrc
+	echo "Alias added succesfully."
+else
+	echo "Aborted."
+fi	
+
+source ~/.zshrc
+echo "the last few lines of ~/.zshrc are..."
+tail ~/.zshrc
+# echo "alias $ALIAS_NAME added to ~/.zshrc" 

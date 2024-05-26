@@ -7,13 +7,12 @@ fi
 
 ALIAS_NAME=$1
 COMMAND=$2
-# escape command to safely use in echo
-ESCAPED_COMMAND=$(printf '%q' '$COMMAND')
 
 NEW_ALIAS="alias $ALIAS_NAME=\"$COMMAND\""
 
+echo "Is the following alias correct? (y/n)"
 echo $NEW_ALIAS
-echo "Is the above alias correct? (y/n)"
+
 read response
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
@@ -26,6 +25,6 @@ else
 fi	
 
 source ~/.zshrc
-echo "the last few lines of ~/.zshrc are..."
-tail ~/.zshrc
-# echo "alias $ALIAS_NAME added to ~/.zshrc" 
+echo "##########################"
+echo "The last entries in ~/.zshrc are:"
+tail -n 5 ~/.zshrc

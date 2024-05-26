@@ -2,7 +2,4 @@
 
 ## To install simply plase the 'mkalias' executable somewhere in your $PATH i.e. ~/bin/mkalias
 
-## The command has the format
-## ```
-## mkalias <name> <command> 
-## ```
+## The command has the format: "mkalias 'name' 'command'"
